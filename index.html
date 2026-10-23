@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaman Yönetimi ve Pomodoro Tekniği: Günlük Odaklanma Rehberi</title>
+    <style>
+        :root {
+            --primary: #c2410c;
+            --primary-light: #ffedd5;
+            --primary-dark: #9a3412;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --accent: #0284c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Başlık Alanı */
+        .article-header {
+            padding: 3rem 2.5rem 2rem 2.5rem;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .meta-info {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+       
+        .table-of-contents {
+            margin: 2rem 2.5rem 0 2.5rem;
+            padding: 1.25rem 1.5rem;
+            background-color: #f1f5f9;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .table-of-contents h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #334155;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .toc-list a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            color: #0369a1;
+            text-decoration: underline;
+        }
+
+        /* Makale Gövdesi */
+        .article-body {
+            padding: 2.5rem;
+        }
+
+        .lead-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            color: #0f172a;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: #374151;
+        }
+
+        /* Görsel ve İllüstrasyon */
+        .article-figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .article-figure img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        figcaption {
+            margin-top: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Alıntı Kutusu */
+        blockquote {
+            margin: 2rem 0;
+            padding: 1.25rem 1.75rem;
+            background-color: #fffaf5;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: #7c2d12;
+        }
+
+        blockquote p {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        blockquote cite {
+            display: block;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-dark);
+            text-align: right;
+        }
+
+        /* Listeler */
+        .styled-ordered-list {
+            margin: 1.25rem 0 1.75rem 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .styled-ordered-list li {
+            margin-bottom: 0.85rem;
+            padding-left: 0.5rem;
+        }
+
+        .styled-ordered-list li::marker {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .styled-unordered-list {
+            margin: 1.25rem 0 1.75rem 1.5rem;
+            list-style-type: square;
+        }
+
+        .styled-unordered-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .nested-list {
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            list-style-type: circle;
+        }
+
+        .nested-list li {
+            margin-bottom: 0.4rem;
+            color: #4b5563;
+        }
+
+        .styled-dl {
+            background-color: #fafaf9;
+            border: 1px solid #e7e5e4;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .styled-dl dt {
+            font-weight: 700;
+            color: #1c1917;
+            font-size: 1.05rem;
+            margin-top: 0.85rem;
+        }
+
+        .styled-dl dt:first-child {
+            margin-top: 0;
+        }
+
+        .styled-dl dd {
+            margin-left: 1.25rem;
+            margin-bottom: 0.85rem;
+            color: #57534e;
+        }
+
+        /* Bilgi Kutusu (Callout) */
+        .info-card {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Bağlantılar */
+        a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            /* Soldaki ve sağdaki öğeleri iki uca yaslar */
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #334155;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link i {
+            font-style: normal;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;   
+        }
+
+        
+        .footer-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-link[aria-label="GitHub"]:hover {
+            background-color: #24292e;
+            border-color: #24292e;
+            color: #ffffff;
+        }
+
+        .footer-link.linkedin:hover {
+            background-color: #0a66c2;
+            border-color: #0a66c2;
+            color: #ffffff;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .back-to-top:hover {
+            background-color: #cbd5e1;
+            color: #0f172a;
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <main class="container">
+        <header class="article-header">
+            <span class="category-badge">Verimlilik & Kişisel Gelişim</span>
+            <h1>Zaman Yönetimi ve Pomodoro Tekniği: Günlük Odaklanma Rehberi</h1>
+            <div class="meta-info">
+                <span><strong>Yazar:</strong> Muhammed Kılıç</span>
+                <span>•</span>
+                <span>•</span>
+                <time datetime="2026-10-10"><strong>Tarih:</strong> 10 Ekim 2026</time>
+                <span>•</span>
+                <span>•</span>
+                <span><strong>Okuma Süresi:</strong> 5 Dakika</span>
+            </div>
+        </header>
+
+        <!-- İçindekiler Navigasyonu -->
+        <nav class="table-of-contents" aria-label="İçindekiler">
+            <h2>İçindekiler</h2>
+            <ul class="toc-list">
+                <li><a href="#giris">1. Modern Dünyada Dikkat Dağınıklığı</a></li>
+                <li><a href="#pomodoro-nedir">2. Pomodoro Tekniği Nedir?</a></li>
+                <li><a href="#adımlar">3. Sıralı Uygulama Adımları (Adım Adım)</a></li>
+                <li><a href="#ipuclari">4. Odaklanmayı Artıran Pratik İpuçları (Sırasız Liste)</a></li>
+                <li><a href="#kaynaklar">6. Faydalı Dış Bağlantılar</a></li>
+            </ul>
+        </nav>
+
+        <!-- Makale İçeriği -->
+        <article class="article-body">
+
+            <!-- Giriş Bölümü -->
+            <section id="giris">
+                <p class="lead-text">
+                    Günümüzün dijital dünyasında en kıymetli hazinemiz <strong>zaman</strong> değil, o zamana
+                    yönelttiğimiz <strong>dikkat ve odaklanma gücümüzdür</strong>. Bildirimler, sosyal medya akışları ve
+                    çoklu görev (<em>multitasking</em>) yanılgısı, derinleşerek iş üretmemizi her zamankinden daha güç
+                    hale getiriyor.
+                </p>
+
+                <!-- Görsel Alanı: SVG İllüstrasyonu ile Sıfır Harici Bağımlılık -->
+                <figure class="article-figure">
+                    <img src="/image/İmage.jpg" alt="Pomodoro zamanlayıcı döngüsü ve dinlenme dengesi." loading="lazy">
+                    <figcaption>Şekil 1: Pomodoro zamanlayıcı döngüsü ve dinlenme dengesi.</figcaption>
+                </figure>
+            </section>
+
+            <!-- Pomodoro Tekniği Nedir -->
+            <section id="pomodoro-nedir">
+                <h2>Pomodoro Tekniği Nedir?</h2>
+                <p>
+                    <strong>Pomodoro Tekniği</strong>, 1980'lerin sonlarında İtalyan üniversite öğrencisi <em>Francesco
+                        Cirillo</em> tarafından geliştirilen son derece basit ama etkili bir zaman yönetimi
+                    felsefesidir. Cirillo, mutfak tezgahında bulunan domates şeklindeki zaman sayacını kullanarak bu
+                    yönteme İtalyanca domates anlamına gelen <strong>"Pomodoro"</strong> adını vermiştir.
+                </p>
+
+                <blockquote>
+                    <p>"Büyük hedeflere ulaşmanın sırrı, devasa dağları fethetmekte değil; her seferinde sadece 25
+                        dakikalık adımlarla kesintisiz ilerleyebilmektedir."</p>
+                    <cite>— Francesco Cirillo, Pomodoro Tekniği'nin Mucidi</cite>
+                </blockquote>
+            </section>
+
+            <!-- Sıralı listelerin bulunduğu bölüm -->
+            <section id="adımlar">
+                <h2>Tekniğin 5 Temel Adımı (Sıralı Listeleme)</h2>
+                <p>
+                    Bu yöntemi hayatınıza entegre etmek için aşağıdaki adımları sırasıyla uygulayınız:
+                </p>
+                <ol class="styled-ordered-list">
+                    <li>
+                        <strong>Yapılacak Tek Bir Görev Seçin:</strong> Listenizdeki en kritik görevi belirleyin ve
+                        sadece ona odaklanacağınıza karar verin.
+                    </li>
+                    <li>
+                        <strong>Zamanlayıcıyı 25 Dakikaya Ayarlayın:</strong> Telefonunuzu sessize alın, dikkatinizi
+                        dağıtacak tüm sekmeleri kapatın ve sayacı başlatın.
+                    </li>
+                    <li>
+                        <strong>Süre Dolana Kadar Yalnızca Görevle İlgilenin:</strong> Bu 25 dakikalık dilim boyunca
+                        araya giren hiçbir şeye (e-posta, sosyal medya vb.) izin vermeyin.
+                    </li>
+                    <li>
+                        <strong>Kısa Bir Mola Verin (5 Dakika):</strong> Süre bittiğinde ekrandan uzaklaşın, su için,
+                        esneme hareketleri yapın ve zihninizi dinlendirin.
+                    </li>
+                    <li>
+                        <strong>4 Döngü Sonunda Uzun Mola Yapın (15-30 Dakika):</strong> Dört adet 25 dakikalık
+                        çalışmayı tamamladıktan sonra derin dinlenme için uzun bir mola hakkı kazanırsınız.
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Sırasız Listeleme Bölümü -->
+            <section id="ipuclari">
+                <h2>Odaklanmayı Artıran Pratik İpuçları (Sırasız Listeleme)</h2>
+                <p>
+                    Pomodoro seanslarınızdan en yüksek verimi alabilmek için çalışma alanınızı ve alışkanlıklarınızı
+                    destekleyecek faktörler:
+                </p>
+                <ul class="styled-unordered-list">
+                    <li>
+                        <strong>Çalışma Ortamını Optimize Etmek:</strong>
+                        <ul class="nested-list">
+                            <li>Masa üzerinde gereksiz evrak ve eşyaları temizlemek</li>
+                            <li>Gözü yormayan doğal veya sıcak ışık tercih etmek</li>
+                            <li>Duruş bozukluğunu önleyen ergonomik sandalye kullanmak</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Dijital Gürültüyü Sıfırlamak:</strong>
+                        <ul class="nested-list">
+                            <li>Anlık bildirimleri "Rahatsız Etmeyin" moduna almak</li>
+                            <li>Gereksiz tarayıcı sekmelerini kapatmak veya gruplamak</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Düşünce Parkı (Not Defteri) Bulundurmak:</strong> Çalışma esnasında aklınıza gelen acil
+                        olmayan fikirleri hemen bir kağıda yazıp işinize geri dönün.
+                    </li>
+                    <li>
+                        <strong>Yeterli Sıvı Tüketimi:</strong> Beyin fonksiyonlarını zinde tutmak için her molada bir
+                        bardak su tüketmeyi ihmal etmeyin.
+                    </li>
+                </ul>
+            </section>
+
+
+            <aside class="info-card">
+                <h4><i class="bi bi-lightbulb" style="color: saddlebrown;"></i> Günün Özeti</h4>
+                <p>
+                    Verimli bir gün geçirmek için günde <strong>6 ile 8 Pomodoro</strong> (yaklaşık 3-4 saatlik derin
+                    odaklanma) tamamlamak, dağınık geçen 8-10 saatlik bir günden çok daha yüksek çıktılar üretir.
+                </p>
+            </aside>
+
+            <section id="kaynaklar">
+                <h2>Faydalı Kaynaklar ve İleri Okuma (Bağlantılar)</h2>
+                <p>
+                    Daha fazla araştırma yapmak ve tekniği dijital araçlarla uygulamak için aşağıdaki bağlantıları
+                    inceleyebilirsiniz:
+                </p>
+                <ul class="styled-unordered-list">
+                    <li>
+
+                        <a href="https://pomofocus.io" target="_blank" rel="noopener noreferrer">
+                            Pomofocus — Tarayıcı Tabanlı Ücretsiz Pomodoro Sayacı
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank"
+                            rel="noopener noreferrer">
+                            Vikipedi: Pomodoro Tekniği Tarihçesi ve Temelleri
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+        </article>
+
+
+        <footer class="article-footer">
+            <div class="social-links">
+                <a href="https://github.com/kilicx61/" class="footer-link" aria-label="GitHub">
+                    <i class="bi bi-github"> Github </i>
+                </a>
+                <a href="https://www.linkedin.com/in/kilicx61/" class="footer-link linkedin">
+                    <i class="bi bi-linkedin"> LinkedIn </i>
+                </a>
+            </div>
+            <div>
+                <a href="#top" class="back-to-top">↑ Sayfa Başına Dön</a>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>
